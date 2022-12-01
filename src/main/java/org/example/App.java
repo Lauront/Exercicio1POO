@@ -11,27 +11,24 @@ import java.util.Scanner;
  */
 public class App 
 {
-    public static void main( String[] args ) throws ParseException {
+    public static void main( String[] args ) {
 
-        //TODO Ler entradas para nome, sobrenome e data de nascimento
+        //Ler entradas para nome, sobrenome e data de nascimento
+
         Scanner sc = new Scanner(System.in);
-        String nome;
-        String sobreNome;
-        LocalDate dataNascimento;
+        Pessoa pessoa = new Pessoa();
 
         System.out.println("Informe seu nome:");
-        nome = sc.next();
+        pessoa.nome = sc.next();
 
         System.out.println("Informe seu sobrenome:");
-        sobreNome = sc.next();
+        pessoa.sobreNome = sc.next();
 
-        System.out.println("Informe seu nome:");
-        dataNascimento = LocalDate.parse(sc.next(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        int idade = LocalDate.now().getYear() - dataNascimento.getYear();
+        System.out.println("Informe seu ano de nascimento: dd/MM/yyyy");
+        pessoa.dataNascimento = LocalDate.parse(sc.next(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        int idade = LocalDate.now().getYear() - pessoa.dataNascimento.getYear();
 
-        System.out.println("olá meu nome é "+nome+" "+sobreNome+ " tenho "+ idade +"anos");
-
-        //TODO Imprimir saudação "Olá seu nome <nome> <sobrenome> tenho <x> anos de idade!"
+        System.out.println(pessoa.saudacao(idade));
 
     }
 }
